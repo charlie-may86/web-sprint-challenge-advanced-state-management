@@ -3,13 +3,13 @@ import {
   SMURF_ADD,
   SMURF_SUCCESS,
   SMURF_FAILED,
+  SET_ERROR,
 } from "../actions";
 
 export const initialState = {
   smurfs: [],
   isLoading: false,
-  error:
-    "Oh no...We are in contact with smurf headquarters in an attempt to fix this problem.",
+  error: "Name, position and nickname fields are required.",
 };
 
 const reducer = (state = initialState, action) => {
@@ -42,6 +42,10 @@ const reducer = (state = initialState, action) => {
             id: state.smurfs.length + 1,
           },
         ],
+      };
+    case SET_ERROR:
+      return {
+        ...state,
       };
     default:
       return state;

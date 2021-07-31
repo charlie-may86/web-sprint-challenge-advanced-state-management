@@ -3,6 +3,7 @@ export const SMURF_FETCH = "SMURF_FETCH";
 export const SMURF_SUCCESS = "SMURF_SUCCESS";
 export const SMURF_FAILED = "SMURF_FAILED";
 export const SMURF_ADD = "SMURF_ADD";
+export const SET_ERROR = 'SET_ERROR'
 
 export const smurfFetch = () => {
   return {
@@ -23,12 +24,18 @@ export const smurfFailed = () => {
   };
 };
 
-export const smurfAdd = (newSmurf) => {
+export const addSmurf = (newSmurf) => {
   return {
     type: SMURF_ADD,
     payload: newSmurf,
   };
 };
+
+export const setError = () => {
+    return {
+        type: SET_ERROR
+    }
+}
 
 //Task List:
 //1. Add a thunk action called fetchSmurfs that triggers a loading status display in our application, performs an axios call to retreive smurfs from our server, saves the result of that call to our state and shows an error if one is made.
