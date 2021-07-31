@@ -3,7 +3,7 @@ import Smurf from "./Smurf";
 
 import { connect } from "react-redux";
 
-const SmurfList = () => {
+const SmurfList = ({ smurfs }) => {
   const isLoading = false;
   const testSmurf = {
     id: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
@@ -20,14 +20,20 @@ const SmurfList = () => {
 
   return (
     <div className="listContainer">
-      <Smurf smurf={testSmurf} />
+      {/* <Smurf smurf={smurfs} /> */}
+      {smurfs.map((smurf) => (
+        <Smurf smurf={smurf} />
+      ))}
     </div>
   );
 };
 
 export const mapStateToProps = (state) => {
-    console.log(state);
-  return {state};
+  console.log(state.smurfs);
+  return {
+    smurfs: state.smurfs,
+    isLoading: state.isLoading,
+  };
 };
 
 export default connect(mapStateToProps)(SmurfList);

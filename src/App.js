@@ -16,7 +16,7 @@ import { fetchSmurfs } from "./actions";
 const App = ({ fetchSmurfs }) => {
   useEffect(() => {
     fetchSmurfs();
-  }, []);
+  }, [fetchSmurfs]);
 
   return (
     <div className="App">
