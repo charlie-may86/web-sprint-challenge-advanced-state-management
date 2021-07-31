@@ -1,9 +1,53 @@
+import {
+  SMURF_FETCH,
+  SMURF_ADD,
+  SMURF_SUCCESS,
+  SMURF_FAILED,
+} from "../actions";
 
 export const initialState = {
-}
+  smurfs: [],
+  isLoading: false,
+  error:
+    "Oh no...We are in contact with smurf headquarters in an attempt to fix this problem.",
+};
 
-const reducer = ()=>{
-}
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SMURF_FETCH:
+      return {
+        ...state,
+        smurfs: action.payload,
+        isLoading: true,
+      };
+    case SMURF_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case SMURF_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case SMURF_ADD:
+      return {
+        ...state,
+        smurfs: [
+          ...state.smurfs,
+          {
+            name: action.payload.name,
+            nickname: action.payload.nickname,
+            position: action.payload.position,
+            description: action.payload.description,
+            id: state.smurfs.length + 1,
+          },
+        ],
+      };
+    default:
+      return state;
+  }
+};
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
 export default reducer;
